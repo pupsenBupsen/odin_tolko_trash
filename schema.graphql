@@ -1,0 +1,51 @@
+type Book {
+    id: ID!
+    name: String!
+    maxrent:LocalEndTime!
+    url: Url!
+    author: [Author]
+}
+
+type Author {
+    id: ID!
+    name: String!
+    urlphoto: Url!
+    DOB: String!
+    obit: String!
+    books: [Book]
+    rentbook: String!
+}
+
+type Reader {
+    id: ID!
+    name: String!    
+    mail: Mail!
+    rent: [rent]
+    fine: Float!
+}
+
+type Rent {
+    id: ID!   
+    book: [Book]
+    reader: [Reader]
+    renttime: Time!
+    period: String!
+    fine: Float!
+}
+
+type Query {
+	books(id: ID!): Book
+	allBook: [Book]!
+
+	authors(id: ID!): Author
+	allAuthors: [Author]!
+
+	rents(id: ID!): Rent
+	rentsreader(readerId: ID!): [Rent]!
+	allRent: [Rent]!
+}
+
+type Mutation {
+	rentBook (bookId: ID!, readerId: ID!): Book!
+    returnBook (bookId: ID!, readerId: ID!): Book!
+}
